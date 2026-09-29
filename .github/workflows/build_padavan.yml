@@ -119,7 +119,7 @@ env:
 jobs:
   build:
     name: Build ${{ inputs.target }}-${{ inputs.toolchain }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
       actions: write
@@ -192,7 +192,10 @@ jobs:
             echo "CONFIG_FIRMWARE_INCLUDE_OC=y" >> "$CONFIGFILE"
             echo "CONFIG_FIRMWARE_MT7621_OC=${{ inputs.mt7621_oc }}" >> "$CONFIGFILE"
           fi
-
+          # === 修复Ubuntu‑24.04 sun‑rpc头缺失报错，关闭NFS服务端、NFS客户端工具 ===
+          sed -i '/CONFIG_FIRMWARE_INCLUDE_NFSD/d' "$CONFIGFILE"
+          sed -i '/CONFIG_FIRMWARE_INCLUDE_NFSC/d' "$CONFIGFILE"
+          echo -e "CONFIG_FIRMWARE_INCLUDE_NFSD=n\nCONFIG_FIRMWARE_INCLUDE_NFSC=n" >> "$CONFIGFILE"
       - name: Apply Nano Optimization
         if: ${{ inputs.nanoversion }}
         run: |
