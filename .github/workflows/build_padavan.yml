@@ -13,6 +13,7 @@ on:
           - 360-T6M
           - 360-T6M-PB
           - B70
+          - MI‑MINI
           - BELL-A040WQ
           - C-Life-XG1
           - CR660x
@@ -87,7 +88,8 @@ on:
         description: 'Plugin JSON, e.g. {"ss":"y","xray":"n"}'
         required: true
         type: string
-        default: '{"shadowsocks":"y","v2ray":"n","xray":"y","trojan":"n","ssobfs":"y","smartdns":"y","vlmcsd":"y","ttyd":"n","iperf3":"n"}'
+        # default: '{"shadowsocks":"y","v2ray":"n","xray":"y","trojan":"n","ssobfs":"y","smartdns":"y","vlmcsd":"y","ttyd":"n","iperf3":"n"}'
+        default: '{"shadowsocks":"y","v2ray":"n","xray":"y","trojan":"n","ssobfs":"y","smartdns":"y","vlmcsd":"n","ttyd":"n","iperf3":"n"}'
       customization:
         description: 'Customization JSON'
         required: true
